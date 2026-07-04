@@ -1,10 +1,11 @@
-# noted! — Smart Pastel Bento Notes App
+# noted! — A simple Note and To=Do App
 
-> A productivity notes & to-do app with a soft pastel bento grid UI, powered by Flutter + Firebase.
+> powered with Flutter + Firebase.
+> a project for midterm submission Mobile Development Division GDGoC Unsri 2026
 
 ---
 
-## ✨ Features
+## Features
 
 | Feature | Description |
 |---|---|
