@@ -55,11 +55,11 @@ class AppTheme {
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.background,
     colorScheme: const ColorScheme.light(
-      primary: Color(0xFF4A7090),
-      secondary: Color(0xFF4A7040),
+      primary: AppColors.primary,
+      secondary: AppColors.primaryLight,
       surface: AppColors.background,
       onPrimary: Colors.white,
-      onSecondary: Colors.white,
+      onSecondary: Colors.black87,
       onSurface: AppColors.textPrimary,
     ),
     textTheme: _buildTextTheme(AppColors.textPrimary),
@@ -88,7 +88,7 @@ class AppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: Color(0xFF4A7090), width: 1.5),
+        borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
@@ -98,7 +98,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF4A7090),
+        backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         elevation: 0,
         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -113,7 +113,7 @@ class AppTheme {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: const Color(0xFF4A7090),
+        foregroundColor: AppColors.primary,
         textStyle: GoogleFonts.inter(
           fontSize: 14,
           fontWeight: FontWeight.w500,
@@ -139,7 +139,7 @@ class AppTheme {
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
-      selectedItemColor: Color(0xFF4A7090),
+      selectedItemColor: AppColors.primary,
       unselectedItemColor: AppColors.textMuted,
       showSelectedLabels: true,
       showUnselectedLabels: true,
@@ -147,14 +147,14 @@ class AppTheme {
       type: BottomNavigationBarType.fixed,
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: Color(0xFF4A7090),
+      backgroundColor: AppColors.primary,
       foregroundColor: Colors.white,
       elevation: 4,
       shape: CircleBorder(),
     ),
     chipTheme: ChipThemeData(
       backgroundColor: Colors.white,
-      selectedColor: const Color(0xFF4A7090),
+      selectedColor: AppColors.primary,
       labelStyle: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w500),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       shape: RoundedRectangleBorder(
@@ -168,11 +168,11 @@ class AppTheme {
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.darkBackground,
     colorScheme: const ColorScheme.dark(
-      primary: Color(0xFF6A90B0),
-      secondary: Color(0xFF6A9060),
+      primary: AppColors.primary,
+      secondary: AppColors.primaryLight,
       surface: AppColors.darkSurface,
       onPrimary: Colors.white,
-      onSecondary: Colors.white,
+      onSecondary: Colors.black87,
       onSurface: Colors.white,
     ),
     textTheme: _buildTextTheme(Colors.white),
@@ -201,13 +201,13 @@ class AppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: Color(0xFF6A90B0), width: 1.5),
+        borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
       ),
       hintStyle: const TextStyle(color: AppColors.textMuted, fontSize: 14),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF6A90B0),
+        backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         elevation: 0,
         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -219,7 +219,7 @@ class AppTheme {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: const Color(0xFF6A90B0),
+        foregroundColor: AppColors.primary,
         textStyle: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w500),
       ),
     ),
@@ -240,7 +240,7 @@ class AppTheme {
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColors.darkSurface,
-      selectedItemColor: Color(0xFF6A90B0),
+      selectedItemColor: AppColors.primary,
       unselectedItemColor: AppColors.textMuted,
       showSelectedLabels: true,
       showUnselectedLabels: true,
@@ -248,14 +248,14 @@ class AppTheme {
       type: BottomNavigationBarType.fixed,
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: Color(0xFF6A90B0),
+      backgroundColor: AppColors.primary,
       foregroundColor: Colors.white,
       elevation: 4,
       shape: CircleBorder(),
     ),
     chipTheme: ChipThemeData(
       backgroundColor: AppColors.darkSurface,
-      selectedColor: const Color(0xFF6A90B0),
+      selectedColor: AppColors.primary,
       labelStyle: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       shape: RoundedRectangleBorder(

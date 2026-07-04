@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'core/constants/app_routes.dart';
@@ -117,44 +118,32 @@ class _SplashScreenState extends State<_SplashScreen>
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFC8D8E8),
-                    borderRadius: BorderRadius.circular(22),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xFFC8D8E8).withValues(alpha: 0.6),
-                        blurRadius: 20,
-                        offset: const Offset(0, 8),
-                      ),
-                    ],
-                  ),
-                  child: const Center(
-                    child: Text('📝', style: TextStyle(fontSize: 40)),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    'assets/images/noted_logo.png',
+                    width: 80,
+                    height: 80,
                   ),
                 ),
                 const SizedBox(height: 20),
                 RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     children: [
                       TextSpan(
                         text: 'noted',
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xFF2A2A2A),
-                          letterSpacing: -1,
+                        style: GoogleFonts.caveat(
+                          fontSize: 48,
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xFF2A2A2A),
                         ),
                       ),
                       TextSpan(
                         text: '!',
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xFF4A7090),
-                          letterSpacing: -1,
+                        style: GoogleFonts.caveat(
+                          fontSize: 48,
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xFFE4A038),
                         ),
                       ),
                     ],

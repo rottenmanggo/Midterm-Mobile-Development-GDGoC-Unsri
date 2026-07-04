@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_routes.dart';
@@ -192,58 +193,51 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Widget _buildHeader() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // App icon
-        Container(
-          width: 64,
-          height: 64,
-          decoration: BoxDecoration(
-            color: AppColors.cardBlue,
-            borderRadius: BorderRadius.circular(18),
-          ),
-          child: const Center(
-            child: Text(
-              '📝',
-              style: TextStyle(fontSize: 32),
+    return Center(
+      child: Column(
+        children: [
+          // App icon
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.asset(
+              'assets/images/noted_logo.png',
+              width: 80,
+              height: 80,
             ),
           ),
-        ),
-        const SizedBox(height: 24),
-        RichText(
-          text: const TextSpan(
-            children: [
-              TextSpan(
-                text: 'noted',
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.w800,
-                  color: AppColors.textPrimary,
-                  letterSpacing: -1,
+          const SizedBox(height: 16),
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: 'noted',
+                  style: GoogleFonts.caveat(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.textPrimary,
+                  ),
                 ),
-              ),
-              TextSpan(
-                text: '!',
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.w800,
-                  color: Color(0xFF4A7090),
-                  letterSpacing: -1,
+                TextSpan(
+                  text: '!',
+                  style: GoogleFonts.caveat(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primary,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: 8),
-        const Text(
-          'Welcome back. Sign in to continue.',
-          style: TextStyle(
-            color: AppColors.textMuted,
-            fontSize: 15,
+          const SizedBox(height: 8),
+          const Text(
+            'Welcome back. Sign in to continue.',
+            style: TextStyle(
+              color: AppColors.textMuted,
+              fontSize: 15,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

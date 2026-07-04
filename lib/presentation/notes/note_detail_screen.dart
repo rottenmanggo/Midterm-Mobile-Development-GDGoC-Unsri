@@ -273,10 +273,10 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
             duration: const Duration(milliseconds: 200),
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
             decoration: BoxDecoration(
-              color: isSelected ? const Color(0xFF4A7090) : Colors.white,
+              color: isSelected ? AppColors.primary : Colors.white,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: isSelected ? const Color(0xFF4A7090) : AppColors.divider,
+                color: isSelected ? AppColors.primary : AppColors.divider,
               ),
             ),
             child: Text(
@@ -335,10 +335,10 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
             margin: const EdgeInsets.only(right: 10),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             decoration: BoxDecoration(
-              color: isSelected ? const Color(0xFF4A7090) : Colors.white,
+              color: isSelected ? AppColors.primary : Colors.white,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: isSelected ? const Color(0xFF4A7090) : AppColors.divider,
+                color: isSelected ? AppColors.primary : AppColors.divider,
               ),
             ),
             child: Row(

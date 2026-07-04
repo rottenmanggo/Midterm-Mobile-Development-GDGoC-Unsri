@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_routes.dart';
@@ -255,42 +256,39 @@ class _RegisterScreenState extends State<RegisterScreen>
   }
 
   Widget _buildHeader() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 64,
-          height: 64,
-          decoration: BoxDecoration(
-            color: AppColors.cardGreen,
-            borderRadius: BorderRadius.circular(18),
+    return Center(
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.asset(
+              'assets/images/noted_logo.png',
+              width: 80,
+              height: 80,
+            ),
           ),
-          child: const Center(
-            child: Text('✨', style: TextStyle(fontSize: 32)),
-          ),
-        ),
-        const SizedBox(height: 24),
-        RichText(
-          text: const TextSpan(
-            children: [
-              TextSpan(
-                text: 'Create Account',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w800,
-                  color: AppColors.textPrimary,
-                  letterSpacing: -0.5,
+          const SizedBox(height: 16),
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Create Account',
+                  style: GoogleFonts.caveat(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.textPrimary,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: 8),
-        const Text(
-          'Join noted! and start organizing your thoughts.',
-          style: TextStyle(color: AppColors.textMuted, fontSize: 15),
-        ),
-      ],
+          const SizedBox(height: 8),
+          const Text(
+            'Join noted! and start organizing your thoughts.',
+            style: TextStyle(color: AppColors.textMuted, fontSize: 15),
+          ),
+        ],
+      ),
     );
   }
 

@@ -7,6 +7,10 @@ class AppColors {
 
   // ── App background ──────────────────────────────────────────────────────────
   static const Color background = Color(0xFFF5F3EE); // warm off-white
+  
+  // ── Primary Theme Colors ────────────────────────────────────────────────────
+  static const Color primary = Color(0xFFE4A038);
+  static const Color primaryLight = Color(0xFFF1E2A7);
 
   // ── Card backgrounds ─────────────────────────────────────────────────────────
   static const Color cardBlue  = Color(0xFFC8D8E8);

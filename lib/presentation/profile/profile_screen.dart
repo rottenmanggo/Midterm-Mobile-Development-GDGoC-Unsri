@@ -12,41 +12,36 @@ class ProfileScreen extends StatelessWidget {
     final auth = context.watch<AuthProvider>();
     final user = auth.user;
 
-    return SafeArea(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header
-            const Text(
-              'Profile',
-              style: TextStyle(
-                color: AppColors.textMuted,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Profile'),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Your account',
+                style: TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: -0.3,
+                ),
               ),
-            ),
-            const SizedBox(height: 2),
-            const Text(
-              'Your account',
-              style: TextStyle(
-                color: AppColors.textPrimary,
-                fontSize: 20,
-                fontWeight: FontWeight.w800,
-                letterSpacing: -0.3,
-              ),
-            ),
-            const SizedBox(height: 28),
-            // Avatar + info
-            _buildProfileCard(context, user),
-            const SizedBox(height: 24),
-            // App info
-            _buildInfoCard(),
-            const SizedBox(height: 24),
-            // Danger zone
-            _buildLogoutButton(context),
-          ],
+              const SizedBox(height: 28),
+              // Avatar + info
+              _buildProfileCard(context, user),
+              const SizedBox(height: 24),
+              // App info
+              _buildInfoCard(),
+              const SizedBox(height: 24),
+              // Danger zone
+              _buildLogoutButton(context),
+            ],
+          ),
         ),
       ),
     );
