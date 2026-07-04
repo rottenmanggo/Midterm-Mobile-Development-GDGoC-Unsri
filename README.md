@@ -1,180 +1,138 @@
-# noted! — A simple Note and To=Do App
+# noted! 📝
 
-> powered with Flutter + Firebase.
-> a project for midterm submission Mobile Development Division GDGoC Unsri 2026
+a minimalist notes and to-do app build with Flutter and Firebase
+---
+
+## ✨ Features
+
+- **Bento Grid Style** — Notes are displayed in a Pinterest-style, variable-sized card grid (normal, wide, tall) for a visually engaging overview.
+- **Drag & Drop Reordering** — Long-press and drag any note to rearrange your grid; the order is saved automatically.
+- **Pinned Notes** — Pin important notes to keep them at the top of the grid.
+- **Task Management** — A dedicated Tasks tab for simple to-do tracking, separate from notes.
+- **Categories & Custom Colors** — Organize notes by category (Study, Personal, Work, Idea) and assign custom card colors and sizes.
+- **Authentication** — Email/password sign-in and account creation powered by Firebase Auth.
+- **Real-Time Sync** — All notes and tasks sync instantly across sessions via Cloud Firestore.
+- **Profile** — View account details and app info at a glance.
 
 ---
 
-## Features
+## 🛠️ Tech Stack
 
-| Feature | Description |
+| Layer | Technology |
 |---|---|
-| 🔐 Auth | Email/password register & login via Firebase Auth |
-| 🔄 Auto-login | Session restored automatically on app launch |
-| 📝 Notes CRUD | Create, read, update, delete notes in real-time |
-| 🗂 Bento Grid | Staggered masonry grid with Normal / Wide / Tall card sizes |
-| 📌 Pin Notes | Pin important notes to always appear first |
-| 🎨 Pastel Colors | 5 card color families: Blue, Green, Amber, Mauve, Cream |
-| ✅ Tasks | Full checklist with toggle, swipe-to-delete, and pending/done sections |
-| 👤 Profile | User info display + sign out |
-| 🌑 Dark Mode | Hue-preserving dark theme (30% darkened cards) |
-| ✨ Animations | Entry animations, press scale, card color transitions |
-| 💀 Shimmer | Shimmer skeleton loading while data fetches |
+| Framework | Flutter (Dart) |
+| State Management | Provider |
+| Backend | Firebase (Authentication + Cloud Firestore) |
+| Architecture | Clean layered structure — `data` / `domain` / `presentation` |
+| Fonts | Google Fonts (Caveat for display titles) |
 
 ---
 
-## 🚀 Setup Instructions
-
-### Prerequisites
-- Flutter SDK (stable channel)
-- Firebase project
-- FlutterFire CLI
-
-### Step 1 — Clone & Install
-```bash
-# Navigate to project directory
-cd d:/Profile/Study/coding/mobdev_project
-
-# Install dependencies
-flutter pub get
-```
-
-### Step 2 — Firebase Setup
-```bash
-# Install FlutterFire CLI (if not already installed)
-dart pub global activate flutterfire_cli
-
-# Configure Firebase (creates lib/firebase_options.dart automatically)
-flutterfire configure
-```
-
-> ⚠️ **IMPORTANT**: After running `flutterfire configure`, delete the placeholder `lib/firebase_options.dart` (already in the project) — FlutterFire will regenerate it with your real credentials.
-
-### Step 3 — Enable Firebase Services
-In the [Firebase Console](https://console.firebase.google.com):
-1. **Authentication** → Sign-in method → Enable **Email/Password**
-2. **Firestore Database** → Create database (start in production mode)
-
-### Step 4 — Firestore Security Rules
-In Firebase Console → Firestore → Rules, paste:
-```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /notes/{noteId} {
-      allow read, update, delete: if request.auth != null
-        && request.auth.uid == resource.data.userId;
-      allow create: if request.auth != null;
-    }
-    match /tasks/{taskId} {
-      allow read, update, delete: if request.auth != null
-        && request.auth.uid == resource.data.userId;
-      allow create: if request.auth != null;
-    }
-  }
-}
-```
-
-### Step 5 — Run the App
-```bash
-flutter run
-```
-
----
-
-## 📁 Folder Structure
+## 📂 Project Structure
 
 ```
 lib/
-├── main.dart                        # Entry point, Firebase init, MultiProvider
-├── app.dart                         # MaterialApp, theme, routes, AuthGate
-├── firebase_options.dart            # ⚠️ Replace with flutterfire configure output
 ├── core/
-│   ├── constants/
-│   │   ├── app_colors.dart          # Pastel palette + color key helpers
-│   │   └── app_routes.dart          # Named route constants
-│   ├── theme/
-│   │   └── app_theme.dart           # Light & dark ThemeData (Inter font)
-│   └── widgets/
-│       ├── loading_indicator.dart   # Shimmer bento skeleton
-│       └── error_widget.dart        # Reusable error display
+│   ├── constants/       # App colors, routes
+│   └── widgets/         # Shared widgets (loading, error states)
 ├── data/
-│   ├── models/
-│   │   ├── note_model.dart          # Firestore note model (Timestamp)
-│   │   ├── task_model.dart          # Firestore task model
-│   │   └── user_model.dart          # Firebase User wrapper
-│   ├── datasources/
-│   │   ├── firebase_auth_datasource.dart
-│   │   └── firestore_datasource.dart
-│   └── repositories/
-│       ├── auth_repository.dart
-│       ├── note_repository.dart
-│       └── task_repository.dart
+│   ├── datasources/     # FirestoreDatasource — raw Firestore calls
+│   ├── models/          # NoteModel, TaskModel
+│   └── repositories/    # NoteRepository, TaskRepository
 ├── domain/
-│   ├── entities/
-│   │   ├── note.dart                # Pure Dart Note entity
-│   │   └── task.dart                # Pure Dart Task entity
-│   └── usecases/
-│       ├── create_note_usecase.dart
-│       ├── get_notes_usecase.dart
-│       └── delete_note_usecase.dart
-└── presentation/
-    ├── auth/
-    │   ├── auth_provider.dart
-    │   ├── login_screen.dart
-    │   └── register_screen.dart
-    ├── notes/
-    │   ├── notes_provider.dart
-    │   ├── home_screen.dart
-    │   ├── add_note_screen.dart
-    │   ├── note_detail_screen.dart
-    │   └── widgets/
-    │       ├── bento_card.dart
-    │       └── bento_grid.dart
-    ├── tasks/
-    │   ├── tasks_provider.dart
-    │   └── tasks_screen.dart
-    └── profile/
-        └── profile_screen.dart
+│   └── usecases/        # CreateNoteUsecase, GetNotesUsecase, etc.
+├── presentation/
+│   ├── auth/            # Sign in / Sign up
+│   ├── notes/           # Notes tab, bento grid, add/edit/detail screens
+│   ├── tasks/           # Tasks tab
+│   ├── profile/         # Profile screen
+│   └── home/             # Root navigation shell
+└── main.dart
 ```
 
 ---
 
-## 🎨 Color Palette
+## 🚀 Getting Started
 
-| Color | Background | Text | FAB |
-|-------|-----------|------|-----|
-| Blue  | `#C8D8E8` | `#2A4A60` | `#A8C0D4` |
-| Green | `#D4E8C2` | `#2A4A20` | `#B8D4A0` |
-| Amber | `#E8D8C0` | `#5A3A10` | `#D4C0A0` |
-| Mauve | `#E0C8D8` | `#5A2040` | `#CCACC0` |
-| Cream | `#E8E0C0` | `#5A4010` | `#D4CC9C` |
+### Prerequisites
+
+- [Flutter SDK](https://docs.flutter.dev/get-started/install) (3.38 or later)
+- Android Studio with an emulator, or a physical Android device
+- A Firebase project with **Authentication** (Email/Password) and **Cloud Firestore** enabled
+- [Firebase CLI](https://firebase.google.com/docs/cli) installed globally
+
+### Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd mobdev_project
+   ```
+
+2. **Install dependencies**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Connect Firebase**
+   ```bash
+   flutterfire configure
+   ```
+   This generates `lib/firebase_options.dart` and registers the app in `firebase.json`.
+
+4. **Deploy Firestore indexes and rules**
+   ```bash
+   firebase deploy --only firestore:indexes
+   ```
+
+5. **Run the app**
+   ```bash
+   flutter run
+   ```
 
 ---
 
-## 📸 Screenshot
+## 🔥 Firestore Data Model
 
-_Coming soon — run the app and take a screenshot!_
+### `notes` collection
+| Field | Type | Description |
+|---|---|---|
+| `title` | string | Note title |
+| `content` | string | Note body |
+| `category` | string | `study` \| `personal` \| `work` \| `idea` |
+| `cardColor` | string | `blue` \| `green` \| `amber` \| `mauve` \| `cream` |
+| `cardType` | string | `normal` \| `wide` \| `tall` |
+| `isPinned` | bool | Whether the note is pinned to the top |
+| `order` | int | Custom sort position (drag-and-drop) |
+| `createdAt` | timestamp | Creation time |
+| `userId` | string | Owner's UID |
+
+### `tasks` collection
+| Field | Type | Description |
+|---|---|---|
+| `title` | string | Task name |
+| `isCompleted` | bool | Completion status |
+| `createdAt` | timestamp | Creation time |
+| `userId` | string | Owner's UID |
+
+**Required composite indexes** (see `firestore.indexes.json`):
+- `notes`: `userId` ASC, `isPinned` DESC, `order` ASC
+- `tasks`: `userId` ASC, `createdAt` DESC
 
 ---
 
-## 🧰 Tech Stack
+## 🎨 Design
 
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `firebase_core` | ^3.6.0 | Firebase initialization |
-| `firebase_auth` | ^5.3.1 | Authentication |
-| `cloud_firestore` | ^5.4.4 | Real-time database |
-| `provider` | ^6.1.2 | State management |
-| `flutter_staggered_grid_view` | ^0.7.0 | Bento masonry grid |
-| `shimmer` | ^3.0.0 | Loading skeleton |
-| `google_fonts` | ^6.2.1 | Inter font |
-| `uuid` | ^4.5.1 | Unique IDs |
-| `intl` | ^0.19.0 | Date formatting |
-| `shared_preferences` | ^2.3.2 | Local persistence |
+**Theme:** Bento Style
+**Primary palette:** `#F1E2A7` (light yellow) · `#E4A038` (accent yellow)
+**Card palette:** Blue, Green, Amber, Mauve, Cream
 
 ---
 
-## 📄 License
+## 📌 Roadmap
 
-MIT © 2024 noted!
+- [ ] Search and filter notes by category
+- [ ] Rich text formatting in notes
+- [ ] Reminders/notifications for tasks
+- [ ] Dark mode
+- [ ] iOS support
